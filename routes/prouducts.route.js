@@ -1,5 +1,5 @@
 const express = require('express');
-const { InsertProductsData, FetchProductsData } = require('../service/products.service');
+const { InsertProductsData, FetchProductsData } = require('../services/products.service');
 
 const router = express.Router();
 

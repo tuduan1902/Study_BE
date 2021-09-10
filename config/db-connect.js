@@ -7,7 +7,7 @@ function connect() {
     const dbHost = process.env.DB_HOST || 'localhost';
     const dbPort = process.env.DB_PORT || 27017;
 
-    mongoose.connect(`Đặt link kết nối vào chỗ này!!!!!!`, mongooseOptions, (err) => {
+    mongoose.connect(`mongodb://127.0.0.1:27017`, mongooseOptions, (err) => {
         if(err) {
             console.log(err);
         } else {

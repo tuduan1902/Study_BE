@@ -1,5 +1,5 @@
 const ProductsModel = require('../models/product');
-
+//var mongoose=require('mongoose');
 
 // Muốn đánh dấu bằng await thì phải đặt nó trong async, ví câu lệnh await chỉ được thao tác dưới ền
 // nên phải được nạp vào Promise bằng câu lệnh async thì mới được gọi.

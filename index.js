@@ -1,6 +1,9 @@
 require('dotenv').config();
 var express = require('express');
 var port = 3000;
+var mongoose= require('mongoose');
+var ketnoidatabase= require('./routes/prouducts.route.js');
+var database = require('./config/db-connect.js');
 const bodyParser = require('body-parser')
 var userRoute = require('./routes/user.route');
 var sessionMiddleware = require('./middlewares/session.middleware');
@@ -12,15 +15,17 @@ var cookieParser = require('cookie-parser');
 var productRoute=require('./routes/product.route');
 const { parse } = require('dotenv');
 var app = express();
+
+database.connect();
 app.set('view engine', 'pug');
 app.set('views','./views');
 app.use(express.static('public'));
-app.use(session({
+/*app.use(session({
     secret: process.env.SECRET_SESSION,
     resave: false,
     saveUninitialized: true,
     cookie:{maxAge: parseInt(process.env.SESSION_TIMEOUT) || 60}
-}));
+}));*/
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing app
 app.use(cookieParser(process.env.SESSION_SECRET));
@@ -30,6 +35,7 @@ app.get('/',(req, res) => {
          name:'Tu Duan'
      });
 });
+app.use('/prouduct',ketnoidatabase);
 app.use('/users',authMiddleware.requireAuth,userRoute);
 app.use('/auth',authRoute);
 app.use('/products',productRoute);
